@@ -1,34 +1,6 @@
-variable "aws_emr_creator_policy_name" {
-  type        = string
-  description = "The name of the policy regarding EMR permissions"
-}
-
-variable "aws_role_name" {
-  type        = string
-  description = "IAM Role to which the policies are attached"
-}
-
 variable "aws_instance_profile_name" {
   type        = string
   description = "IAM Instance Profile"
-}
-
-variable "s3_policy_arns" {
-  type        = list(string)
-  description = "List of S3 policy ARNs to attach to Tamr role."
-}
-
-variable "arn_partition" {
-  type        = string
-  description = <<EOF
-  The partition in which the resource is located. A partition is a group of AWS Regions.
-  Each AWS account is scoped to one partition.
-  The following are the supported partitions:
-    aws -AWS Regions
-    aws-cn - China Regions
-    aws-us-gov - AWS GovCloud (US) Regions
-  EOF
-  default     = "aws"
 }
 
 variable "vpc_id" {

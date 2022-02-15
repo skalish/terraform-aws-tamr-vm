@@ -32,13 +32,50 @@ Smallest complete fully working example. This example might require extra resour
 
 # Resources Required
 This module requires the prior existence of
-* an IAM role for use by the Tamr VM
+* an IAM role for use by the Tamr VM with an associated instance profile
+* an IAM policy attached to this role with permissions for creating a cluster, i.e.
+```
+[
+  statement {
+    effect = "Allow"
+    actions = [
+        "elasticmapreduce:AddInstanceGroups",
+        "elasticmapreduce:AddJobFlowSteps",
+        "elasticmapreduce:ListBootstrapActions",
+        "elasticmapreduce:ListInstances",
+        "elasticmapreduce:ListInstanceGroups",
+        "elasticmapreduce:ListSteps",
+        "elasticmapreduce:TerminateJobFlows",
+        "iam:PassRole"
+    ]
+    resources = [
+      "arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*",
+      "arn:${var.arn_partition}:elasticmapreduce:*:${data.aws_caller_identity.current.account_id}:cluster/*"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticmapreduce:RunJobFlow"
+    ]
+    resources = [
+      "arn:${arn_partition}:elasticmapreduce:*"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticmapreduce:Describe*",
+      "elasticmapreduce:ListClusters"
+    ]
+    resources = ["*"]
+  }
+]
+```
 
 # Resources Created
 This modules creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
-* an IAM policy with permissions for creating a cluster
-* an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
 * a security group for EC2 allowing access to the Tamr VM.
 * additonal security group rules. By default, opens required Tamr ports,
 enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr to operate and recreates

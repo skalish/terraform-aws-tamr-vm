@@ -5,7 +5,3 @@ output "tamr_security_groups" {
 output "tamr_instance" {
   value = module.tamr_instance
 }
-
-output "tamr_iam_policies" {
-  value = module.aws-iam-policies
-}

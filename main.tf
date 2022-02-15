@@ -1,11 +1,4 @@
 //working example for Tamr EMR account
-module "aws-iam-policies" {
-  source                      = "./modules/aws-iam-policies"
-  aws_role_name               = var.aws_role_name
-  aws_emr_creator_policy_name = var.aws_emr_creator_policy_name
-  s3_policy_arns              = var.s3_policy_arns
-}
-
 module "aws-security-groups" {
   source                  = "./modules/aws-security-groups"
   sg_name                 = var.sg_name
@@ -30,7 +23,6 @@ module "aws-security-groups" {
 
 module "tamr_instance" {
   source     = "./modules/aws-ec2-instance"
-  depends_on = [module.aws-iam-policies]
 
   ami                      = var.ami
   availability_zone        = var.availability_zone
