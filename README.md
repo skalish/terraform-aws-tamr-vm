@@ -32,7 +32,17 @@ Smallest complete fully working example. This example might require extra resour
 
 # Resources Required
 This module requires the prior existence of
-* an IAM role for use by the Tamr VM with an associated instance profile
+* an IAM role for use by the Tamr VM with an associated instance profile, i.e.
+```
+statement {
+  actions = ["sts:AssumeRole"]
+
+  principals {
+    type        = "Service"
+    identifiers = ["ec2.amazonaws.com"]
+  }
+}
+```
 * an IAM policy attached to this role with permissions for creating a cluster, i.e.
 ```
 [
