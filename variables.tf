@@ -1,17 +1,16 @@
 variable "aws_emr_creator_policy_name" {
   type        = string
-  description = "The name to give to the policy regarding EMR permissions"
-  default     = "emrCreatorMinimalPolicy"
+  description = "The name of the policy regarding EMR permissions"
 }
 
 variable "aws_role_name" {
   type        = string
-  description = "IAM Role to create, and to which the policies will be attached"
+  description = "IAM Role to which the policies are attached"
 }
 
 variable "aws_instance_profile_name" {
   type        = string
-  description = "IAM Instance Profile to create"
+  description = "IAM Instance Profile"
 }
 
 variable "s3_policy_arns" {

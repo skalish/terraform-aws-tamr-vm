@@ -30,12 +30,15 @@ source                           = "git::https://github.com/Datatamer/terraform-
 Smallest complete fully working example. This example might require extra resources to run the example.
 - [Minimal](https://github.com/Datatamer/terraform-aws-tamr-vm/tree/master/examples/minimal)
 
+# Resources Required
+This module requires the prior existence of
+* an IAM role for use by the Tamr VM
+
 # Resources Created
 This modules creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
 * an IAM policy with permissions for creating a cluster
 * an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
-* an IAM role for use by the Tamr VM
 * a security group for EC2 allowing access to the Tamr VM.
 * additonal security group rules. By default, opens required Tamr ports,
 enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr to operate and recreates
