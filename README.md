@@ -100,10 +100,8 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
-| aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
-| aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
+| aws\_instance\_profile\_name | IAM Instance Profile | `string` | n/a | yes |
 | key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
-| s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
@@ -137,8 +135,6 @@ No provider.
 
 | Name | Description |
 |------|-------------|
-| tamr\_iam\_policies | n/a |
-| tamr\_iam\_role | n/a |
 | tamr\_instance | n/a |
 | tamr\_security\_groups | n/a |
 
